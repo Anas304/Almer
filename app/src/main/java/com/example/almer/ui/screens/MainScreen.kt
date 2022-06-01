@@ -1,8 +1,8 @@
 package com.example.almer.ui.screens
 
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -11,9 +11,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -22,20 +20,20 @@ import com.example.almer.R
 
 
 @Composable
-fun MainContainer() {
+fun OverviewScreen() {
     Box(contentAlignment = Alignment.Center) {
         Column {
             Row(
                 modifier = Modifier
                     .weight(1.0f)
                     .fillMaxWidth()
-                    .background(color = Color.DarkGray)
+                    .background(color = Color(0xFF7F7F7F))
             ) {
                 Image(
                     painter = rememberImagePainter(data = R.drawable.almerlogo),
                     contentDescription = "content Description",
                     modifier = Modifier
-                        .padding(start = 20.dp, top = 30.dp)
+                        .padding(start = 20.dp, top = 5.dp)
                         .size(140.dp)
                         .fillMaxSize(),
                     //contentScale = ContentScale.Inside,
@@ -45,7 +43,8 @@ fun MainContainer() {
                     painter = rememberImagePainter(data = R.drawable.ic_baseline_settings_24),
                     contentDescription = "content Description",
                     modifier = Modifier
-                        .padding(start = 180.dp, top = 85.dp)
+                        .clickable { /** Nav to  Settings Screen*/ }
+                        .padding(start = 175.dp, top = 65.dp)
                         .size(30.dp)
                         .fillMaxSize(),
                     //contentScale = ContentScale.Inside,
@@ -63,10 +62,6 @@ fun MainContainer() {
         }
 
         //TODO our Almer Glasses card
-/*        Box(modifier = Modifier
-            .background(color = Color.Black)
-            .height(100.dp)
-            .width(100.dp))*/
         Card(
             Modifier
                 .padding(20.dp),
@@ -119,36 +114,71 @@ fun MainContainer() {
                         style = MaterialTheme.typography.subtitle2
                     )
                 }
-                Image(painter = rememberImagePainter(data = R.drawable.render_3_4right_1),
+                Image(
+                    painter = rememberImagePainter(data = R.drawable.render_3_4right_1),
                     contentDescription = "Content Image",
                     modifier = Modifier.size(300.dp)
-                    )
+                )
                 Row {
-                    UserControlls(numberText = "Wifi", image = R.drawable.ic_baseline_wifi_24 )
+                    Spacer(modifier = Modifier.padding(20.dp))
+                    UserControlls(
+                        numberText = "Hotspot", image = R.drawable.hotspotoff
+                    )
+                    Spacer(modifier = Modifier.padding(20.dp))
+                    UserControlls(numberText = "Wifi", image = R.drawable.wifioff)
+                    Spacer(modifier = Modifier.padding(20.dp))
+                    UserControlls(numberText = "Headphones", image = R.drawable.headphoneoff)
+                    Spacer(modifier = Modifier.padding(20.dp))
                 }
-
+                Spacer(modifier = Modifier.padding(20.dp))
             }
-
         }
-    }
+
+        Box(
+            contentAlignment = Alignment.BottomCenter,
+            modifier = Modifier.padding(top = 510.dp)
+        ) {
+            Spacer(modifier = Modifier.padding(10.dp))
+            OutlinedButton(
+                onClick = { },
+                shape = RoundedCornerShape(20.dp),
+                colors = ButtonDefaults.textButtonColors(backgroundColor = Color(0xFF7F7F7F)),
+                modifier = Modifier
+                    .wrapContentSize()
+                    .padding(10.dp)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.pin),
+                    modifier = Modifier.size(15.dp),
+                    contentDescription = "content description",
+                    tint = Color(0xFFEEEEEE)
+                )
+                Spacer(modifier = Modifier.padding(5.dp))
+                Text(text = "Share call link", color = Color.White)
+            }
+        }//Button Box
+
+    }//MainBox
 }
 
 @Composable
 fun UserControlls(
     numberText: String,
-    image : Int,
+    image: Int,
 ) {
     Column(
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-            Text(text = numberText, style = MaterialTheme.typography.subtitle2)
             Spacer(modifier = Modifier.width(10.dp))
             Image(
                 painter = rememberImagePainter(data = image),
-                modifier = Modifier.size(30.dp),
-                contentDescription = "content description" )
+                modifier = Modifier.size(25.dp),
+                contentDescription = "content description"
+            )
+            Spacer(modifier = Modifier.padding(7.dp))
+            Text(text = numberText, style = MaterialTheme.typography.subtitle2)
         }
 
     }
@@ -157,5 +187,5 @@ fun UserControlls(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    MainContainer()
+    OverviewScreen()
 }
