@@ -1,4 +1,4 @@
-package com.example.almer.ui.screens
+package com.example.almer.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,12 +15,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.almer.R
+import com.example.almer.navigation.Screens
 
 
 @Composable
-fun OverviewScreen() {
+fun OverviewScreen(navController: NavController) {
     Box(contentAlignment = Alignment.Center) {
         Column {
             Row(
@@ -43,7 +45,7 @@ fun OverviewScreen() {
                     painter = rememberImagePainter(data = R.drawable.ic_baseline_settings_24),
                     contentDescription = "content Description",
                     modifier = Modifier
-                        .clickable { /** Nav to  Settings Screen*/ }
+                        .clickable { navController.navigate(Screens.SettingsScreen.route) }
                         .padding(start = 175.dp, top = 65.dp)
                         .size(30.dp)
                         .fillMaxSize(),
@@ -184,8 +186,10 @@ fun UserControlls(
     }
 }
 
+/*
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     OverviewScreen()
 }
+*/

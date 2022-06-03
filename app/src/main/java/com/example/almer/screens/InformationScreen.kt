@@ -1,4 +1,4 @@
-package com.example.almer.ui.screens
+package com.example.almer.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,15 +12,15 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.almer.R
+import androidx.navigation.NavController
 
 @Composable
-fun InformationScreen() {
+fun InformationScreen(navController: NavController) {
     Scaffold(topBar = {
         AppBarInfo(
             title = "Information",
             icon = Icons.Default.ArrowBack,
-            iconClickAction = {/* navController?.navigateUp()*/ }
+            iconClickAction = { navController.navigateUp() }
         )
     }) {
         Surface(
@@ -125,8 +125,9 @@ fun AppBarInfo(title: String, icon: ImageVector, iconClickAction: () -> Unit) {
     )
 }
 
+/*
 @Preview(showBackground = true)
 @Composable
 fun InfoDefaultPreview() {
     InformationScreen()
-}
+}*/
