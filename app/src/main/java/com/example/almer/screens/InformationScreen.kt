@@ -1,5 +1,6 @@
 package com.example.almer.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -8,18 +9,22 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.almer.R
 
 @Composable
 fun InformationScreen(navController: NavController) {
     Scaffold(topBar = {
         AppBarInfo(
             title = "Information",
-            icon = Icons.Default.ArrowBack,
+            icon = R.drawable.ic_baseline_arrow_back ,
             iconClickAction = { navController.navigateUp() }
         )
     }) {
@@ -111,17 +116,18 @@ fun InformationScreen(navController: NavController) {
 
 
 @Composable
-fun AppBarInfo(title: String, icon: ImageVector, iconClickAction: () -> Unit) {
+fun AppBarInfo(title: String, icon: Int, iconClickAction: () -> Unit) {
     TopAppBar(
+        backgroundColor = Color(0xFF7F7F7F),
         navigationIcon = {
-            Icon(
-                imageVector = icon, "Content Description",
-                modifier = Modifier
-                    .padding(horizontal = 20.dp)
-                    .clickable { iconClickAction.invoke() }
+            Image(
+                painter = painterResource(icon),
+                contentDescription = "",
+                colorFilter = ColorFilter.tint(Color.White),
+                modifier =  Modifier.clickable { iconClickAction.invoke() }
             )
         },
-        title = { Text(text = title) }
+        title = { Text(text = title,color = Color.White) }
     )
 }
 

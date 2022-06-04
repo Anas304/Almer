@@ -114,13 +114,14 @@ fun FirstScreen(navController: NavController) {
             Box(
                 modifier = Modifier
                     .wrapContentSize(),
-            contentAlignment = Alignment.BottomCenter){
+                contentAlignment = Alignment.BottomCenter){
                 SimpleAlertDialog(navController = navController)
             }
         }
 
-
     }//MainBox
+
+
 
 }
 
@@ -158,7 +159,7 @@ fun SimpleAlertDialog(navController: NavController) {
     AlertDialog(
         onDismissRequest = { },
         confirmButton = {
-            TextButton(onClick = {})
+            TextButton(onClick = {navController.navigate(Screens.AlmerGlassList.route)})
             {
                 Text(
                     text = "Retry", fontSize = 14.sp, color = Color.Black,
@@ -200,6 +201,10 @@ fun SimpleAlertDialog(navController: NavController) {
             )
         }
     )
+/*    LaunchedEffect(Unit){
+        delay(4000L)
+    }*/
+
 }
 
 
@@ -217,7 +222,7 @@ private fun CircularProgressAnimated() {
     CircularProgressIndicator(
         progress = progressAnimationValue,
         modifier = Modifier.size(25.dp),
-        color = Color(0xFF7F7F7F)
+        color = Color(0xFF7F7F7F),
     )
 }
 

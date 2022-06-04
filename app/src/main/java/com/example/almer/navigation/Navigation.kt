@@ -27,6 +27,10 @@ fun Navigation(navController: NavHostController) {
         composable(Screens.InformationScreen.route) {
             InformationScreen(navController = navController)
         }
+
+        composable(Screens.AlmerGlassList.route) {
+            AlmerGlassList(navController = navController)
+        }
     }
 
 }

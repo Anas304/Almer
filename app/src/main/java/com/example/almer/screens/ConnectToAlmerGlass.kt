@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -40,7 +41,7 @@ fun ConnectToAlmerGlass(navController: NavController) {
     Scaffold(topBar = {
         AppBarConnectToAG(
             title = "Connect to Almer Glasses",
-            icon = Icons.Default.ArrowBack,
+            icon = R.drawable.ic_baseline_arrow_back,
             iconClickAction = { navController.navigateUp() }
         )
     }) {
@@ -150,18 +151,20 @@ fun ConnectToAlmerGlass(navController: NavController) {
 }
 
 @Composable
-fun AppBarConnectToAG(title: String, icon: ImageVector, iconClickAction: () -> Unit) {
+fun AppBarConnectToAG(title: String, icon: Int, iconClickAction: () -> Unit) {
     TopAppBar(
+        backgroundColor = Color(0xFF7F7F7F),
         navigationIcon = {
-            Icon(
-                imageVector = icon, "Content Description",
-                modifier = Modifier
-                    .padding(horizontal = 20.dp)
-                    .clickable { iconClickAction.invoke() }
+            Image(
+                painter = painterResource(icon),
+                contentDescription = "",
+                colorFilter = ColorFilter.tint(Color.White),
+              modifier =  Modifier.clickable { iconClickAction.invoke() }
             )
         },
-        title = { Text(text = title) }
+        title = { Text(text = title, color = Color.White) }
     )
+
 }
 
 /*
